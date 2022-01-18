@@ -10,5 +10,13 @@ type Query {
 articles: [Article]
 article(id:ID!): Article
 }
+input ArticleInput{
+title : String!
+content: String!
+}
+type Mutation {
+createArticle(articleInput: ArticleInput): Article
+}
 `);
+
 module.exports = typeDefs;

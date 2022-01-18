@@ -1,20 +1,20 @@
-const Article = require('../model/article');
-
+const Article = require("../model/article");
 
 const resolvers = {
-Query : {
-articles: async () => await{return Article.find({})}
-article: async (parent, args) => await{ return Article.findById(args.id)}
- 
-},
-Mutation: {
-createArticle: async (parent, args) =>
- { let article = new Article(arguments.articleInput) 
-await 
-return article.save() }
+  Query: {
+    articles: async () => {
+      return await Article.find({});
+    },
+    article: async (parent, args) => {
+      return await Article.findById(args.id);
+    },
+  },
+  Mutation: {
+    createArticle: (parent, args) => {
+      let article = new Article(args.articleInput);
+      return article.save();
+    },
+  },
+};
 
-
-}
-}
-
-module.exports = resolvers 
+module.exports = resolvers;
