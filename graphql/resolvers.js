@@ -10,11 +10,18 @@ const resolvers = {
     },
   },
   Mutation: {
-    createArticle: (parent, args) => {
+    createArticle: async (parent, args) => {
       let article = new Article(args.articleInput);
-      return article.save();
+      return await article.save();
+    },
+    updateArticle: async (parent, args) => {
+      return await Article.findByIdAndUpdate(args.id, args.articleInput, {
+        new: true,
+      });
+    },
+    deleteArticle: async (parent, args) => {
+      return await Article.findByIdAndDelete(args.id);
     },
   },
 };
-
 module.exports = resolvers;
